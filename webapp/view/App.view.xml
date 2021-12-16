@@ -1,0 +1,41 @@
+<mvc:View controllerName="app.FormValidationUsingValidatorJs.controller.App" xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core"
+	xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns="sap.m">
+	<App>
+		<Page id="somePage" title="Some Page">
+			<content>
+				<l:Grid defaultSpan="L12 M12 S12" width="auto">
+					<l:content>
+						<f:SimpleForm maxContainerCols="2" editable="true" layout="ResponsiveGridLayout" labelSpanL="4" labelSpanM="4" emptySpanL="0" emptySpanM="0"
+							columnsL="2" columnsM="2">
+							<f:content>
+								<core:Title text="Form Title"/>
+								<Label text="Some Text" required="true"/>
+								<Input value="{ path : '/text', type : 'sap.ui.model.type.String', constraints : { minLength : 3, maxLength : 10 } }"/>
+								<Label text="Email" required="true"/>
+								<Input value="{ path : '/userEmail', type : 'sap.ui.model.type.String', constraints : { search : '\\S+@\\S+\\.\\S+' } }"/>
+							</f:content>
+						</f:SimpleForm>
+						<f:SimpleForm maxContainerCols="2" editable="true" layout="ResponsiveGridLayout" labelSpanL="4" labelSpanM="4" emptySpanL="0" emptySpanM="0"
+							columnsL="2" columnsM="2">
+							<f:content>
+								<core:Title text="Another form" required="true"/>
+								<Label text="Some Number" required="true"/>
+								<Input
+									value="{ path : '/number', type : 'sap.ui.model.type.Integer', formatOptions : { groupingEnabled : true }, constraints : { minimum : 50, maximum : 10000000 } }"/>
+								<Label text="Some Date" required="true"/>
+								<DatePicker id="myDate"
+									value="{ path : '/date', type : 'sap.ui.model.type.Date', formatOptions : { source: { pattern: 'dd-MM-yyyy' }, pattern: 'dd-MM-yyyy' }, constraints : { minimum : '01-01-2016' } }"/>
+							</f:content>
+						</f:SimpleForm>
+					</l:content>
+				</l:Grid>
+			</content>
+			<footer>
+				<Toolbar>
+					<ToolbarSpacer/>
+					<Button text="Validate form" type="Accept" press="onValidate"/>
+				</Toolbar>
+			</footer>
+		</Page>
+	</App>
+</mvc:View>
